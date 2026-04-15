@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Noto Serif KR", serif;
+  --color-warm-bg: #fdfbf7;
+  --color-warm-card: #ffffff;
+  --color-olive: #5a5a40;
+  --color-earth: #8c7851;
+  --color-paper: #fffaf0;
+  
+  /* Dark Mode Colors */
+  --color-dark-bg: #1a1a17;
+  --color-dark-card: #262622;
+  --color-dark-text: #e5e5e0;
+  --color-dark-muted: #a1a19a;
+}
+
+@layer base {
+  body {
+    @apply transition-colors duration-500 font-serif text-stone-900;
+    background: radial-gradient(circle at top left, #fffcf5, #f3f4f6);
+    min-height: 100vh;
+  }
+  
+  .dark body {
+    background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+    @apply text-stone-100;
+  }
+
+  h1, h2, h3 {
+    @apply transition-colors duration-500;
+  }
+
+  .dark h1, .dark h2, .dark h3 {
+    /* Colors handled by specific classes or body text-stone-100 */
+  }
+
+  p {
+    @apply text-stone-600 transition-colors duration-500;
+  }
+
+  .dark p {
+    @apply text-stone-400;
+  }
+
+  label {
+    @apply text-stone-500 transition-colors duration-500;
+  }
+
+  .dark label {
+    @apply text-stone-400;
+  }
+
+  /* Title Color Fix */
+  body.dark .title {
+    color: #f5f5f5 !important;
+  }
+
+  body:not(.dark) .title {
+    color: #222 !important;
+  }
+}
+
+@layer components {
+  .card-base {
+    @apply bg-white dark:bg-dark-card border border-stone-100 dark:border-stone-800 shadow-xl shadow-stone-200/50 dark:shadow-none transition-all duration-300;
+  }
+
+  .paper-card {
+    @apply bg-[var(--color-paper)] dark:bg-stone-800 shadow-2xl shadow-stone-300/40 dark:shadow-none border border-stone-200/50 dark:border-stone-700/50;
+  }
+
+  .input-base {
+    @apply bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-dark-text transition-all duration-300;
+  }
+}
